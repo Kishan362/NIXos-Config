@@ -70,14 +70,11 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
-
     GDK_BACKEND = "wayland,x11";
     QT_QPA_PLATFORM = "wayland;xcb";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
-
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
@@ -98,7 +95,6 @@
   # Audio (PipeWire)
   # -------------------------
   security.rtkit.enable = true;
-
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -106,7 +102,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
   services.pulseaudio.enable = false;
 
   # -------------------------
@@ -133,7 +128,7 @@
   };
 
   # -------------------------
-  # Fonts (FIXED - NO NERD FONTS)
+  # Fonts
   # -------------------------
   fonts.packages = with pkgs; [
     noto-fonts
@@ -144,14 +139,6 @@
     jetbrains-mono
     font-awesome
   ];
-
-  fonts.fontconfig = {
-    defaultFonts = {
-      monospace = [ "JetBrains Mono" ];
-      sansSerif = [ "Noto Sans" ];
-      serif     = [ "Noto Serif" ];
-    };
-  };
 
   # -------------------------
   # User
@@ -185,7 +172,18 @@
   # -------------------------
   # System Packages
   # -------------------------
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = let
+    # Updated hash to match what your system reported
+    zen-browser-src = pkgs.fetchFromGitHub {
+      owner = "youwen5";
+      repo = "zen-browser-flake";
+      rev = "master";
+      sha256 = "sha256-sCokvdNvl8zIzsnjgG0TN5h3RUI7GJyWW9ErfmEj0rM="; 
+    };
+    zen-browser-pkg = import zen-browser-src { inherit pkgs; };
+  in with pkgs; [
+    zen-browser-pkg.default
+
     vim
     neovim
     wget
@@ -196,11 +194,12 @@
     bat
     eza
     btop
-    neofetch
     fastfetch
     unzip
     unrar
     p7zip
+    file
+    jq
     waybar
     wofi
     mako
@@ -214,39 +213,26 @@
     grim
     slurp
     swappy
-    file
     wl-clipboard
     cliphist
-
+    brightnessctl
+    playerctl
     mpv
     imv
     pavucontrol
-    networkmanager
     networkmanagerapplet
     blueman
-
     kitty
-
-    gtk3
-    gtk4
     nwg-look
+    udiskie
     papirus-icon-theme
     catppuccin-gtk
-    
-    udiskie
-    brightnessctl
-    playerctl
-    jq
-    flatpak
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
   ];
 
   # -------------------------
   # Nix settings
   # -------------------------
   nixpkgs.config.allowUnfree = true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix.gc = {
@@ -255,8 +241,6 @@
     options = "--delete-older-than 14d";
   };
 
-  # -------------------------
-  # System Version
-  # -------------------------
   system.stateVersion = "25.11";
 }
+
