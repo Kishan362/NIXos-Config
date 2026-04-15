@@ -1,0 +1,35 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    /* This removes the name from the entry format */
+    drun-display-format: "{icon}";
+    
+    display-drun: "    ";
+    display-run: "  ";
+    display-window: "    ";
+}
+
+/* Original Nix store theme */
+//@theme "/nix/store/h7iclz9zzwz48xd3mp426lr0zzrg1d7h-rofi-2.0.0/share/rofi/themes/sidebar-v2.rasi"
+
+/* Overrides to hide text labels */
+element-text {
+    enabled: false;
+}
+
+/* Optional: Make icons larger for better visibility */
+element-icon {
+    size: 48px;
+    cursor: inherit;
+}
+
+
+
+
+//@theme "/nix/store/h7iclz9zzwz48xd3mp426lr0zzrg1d7h-rofi-2.0.0/share/rofi/themes/docu.rasi"
+
+//@theme "/nix/store/h7iclz9zzwz48xd3mp426lr0zzrg1d7h-rofi-2.0.0/share/rofi/themes/fullscreen-preview.rasi"
+
+//@theme "/nix/store/h7iclz9zzwz48xd3mp426lr0zzrg1d7h-rofi-2.0.0/share/rofi/themes/Monokai.rasi"
+
+@theme "/nix/store/h7iclz9zzwz48xd3mp426lr0zzrg1d7h-rofi-2.0.0/share/rofi/themes/sidebar-v2.rasi"

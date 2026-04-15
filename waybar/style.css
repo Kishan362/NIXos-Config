@@ -1,0 +1,90 @@
+* {
+    font-family: 'JetBrainsMono Nerd Font', 'Font Awesome 6 Free', sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+}
+
+/* THE TRANSPARENT BAR */
+window#waybar {
+    background-color: rgba(0, 0, 0, 0); 
+    color: #d3c6aa;
+}
+
+/* SHARED PILL STYLE - Adjusted for vertical stacking */
+#clock, 
+#window, 
+#workspaces, 
+#pulseaudio, 
+#network, 
+#cpu, 
+#memory, 
+#backlight, 
+#battery, 
+#tray {
+    /* More vertical padding (top/bottom), less horizontal (left/right) */
+    padding: 10px 0; 
+    /* Margin adjusted: 3px from left/right edges, 4px between modules */
+    margin: 3px 4px; 
+    border-radius: 12px; 
+    background-color: rgba(30, 35, 38, 0.6);
+    /* Ensures content centers inside the pill vertically */
+    transition: none;
+}
+
+/* WORKSPACES - Adjusted for vertical list */
+#workspaces {
+    background-color: rgba(45, 52, 54, 0.7);
+}
+
+#workspaces button {
+    color: #7fbbb3;
+    /* Spacing between workspace numbers */
+    padding: 4px 0; 
+}
+
+#workspaces button.active {
+    color: #d3c6aa;
+    background-color: rgba(167, 192, 128, 0.3);
+    border-radius: 8px;
+}
+
+/* MODULE SPECIFIC COLORS */
+#clock {
+    color: #a7c080;
+    font-weight: bold;
+}
+
+#window {
+    color: #d3c6aa;
+    background-color: transparent;
+    /* Margin to separate from clock/workspaces */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#pulseaudio { color: #e67e80; }
+#backlight  { color: #dbbc7f; }
+#cpu        { color: #7fbbb3; }
+#memory     { color: #d699b6; }
+#network    { color: #83c092; }
+
+#battery {
+    font-size: 15px;
+    color: #7fBca3;
+}
+
+#battery.warning { color: #e69875; }
+#battery.critical:not(.charging) { color: #e67e80; }
+
+#tray {
+    background-color: rgba(30, 35, 38, 0.6);
+    /* Padding for the icons in the tray */
+    padding: 10px 5px;
+}
+
+/* Fix for tray icons spacing in vertical mode */
+#tray menu {
+    background-color: #1e2326;
+}
+

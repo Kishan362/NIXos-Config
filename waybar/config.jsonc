@@ -1,0 +1,85 @@
+{
+    "layer": "top", // Changed from 'right' (invalid) to 'top'
+    "position": "right", 
+    "width": 45, // Use 'width' instead of 'height' for vertical bars
+    "spacing": 4,
+
+    // On a vertical bar:
+    // modules-left = TOP
+    // modules-center = MIDDLE
+    // modules-right = BOTTOM
+    "modules-left": [
+        "clock",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "backlight",
+        "cpu",
+        "memory",
+        "network",
+        "battery",
+        "tray"
+    ],
+
+    "clock": {
+        // Vertical bars often look better with shorter time formats
+        "format": "{:%I\n%M}", 
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "rotate": 90, // Rotates text to fit the vertical strip
+        "max-length": 30,
+        "separate-outputs": true
+    },
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "disable-scroll": true,
+        "all-outputs": true
+    },
+
+    "pulseaudio": {
+        "format": "{icon}", // Removed text to save horizontal space
+        "format-bluetooth": "",
+        "format-muted": "  ",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "cpu": {
+        "format": "{usage}%",
+        "rotate": 90
+    },
+
+    "memory": {
+        "format": "{}%",
+        "rotate": 90
+    },
+
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "  ",
+        "format-disconnected": "⚠",
+        "on-click": "networkmanager_dmenu -menu wofi"
+    },
+
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "tray": {
+        "spacing": 10
+    }
+}
+
